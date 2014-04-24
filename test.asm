@@ -32,11 +32,12 @@ _start:
     movzx rbx, bl
     mov r9, rbx
 
-    mov rax, _buffer
-    mov [rax], byte bl
 
-    mov rbx, 1
-    call print_cstring
+    ; Show the first letter of argv[1]
+    ; mov rax, _buffer
+    ; mov [rax], byte bl
+    ; mov rbx, 1
+    ; call print_cstring
 
 
     mov rsi, 0
@@ -50,7 +51,7 @@ _start:
     push rax
 
     xor rax, rax
-    mov rdx, 0x1000000
+    mov rdx, 0x5000000
     
 _loop:
     cmp rax, r9
@@ -95,12 +96,6 @@ _next_word:
     mov rax, r13
     call print_number
 
-    call read_timestamp
-    call print_number
-
-    call read_timestamp
-    call print_number
-
     pop rax
     pop rbx
     sub rax, rbx
@@ -108,6 +103,7 @@ _next_word:
 
 
 _exit:
+    mov rdi, 0
     mov rax, SYS_EXIT
     syscall 
 
